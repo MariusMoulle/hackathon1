@@ -1,6 +1,7 @@
 
 import pygame as pg
 from random import randint
+import numpy as np
 
 pg.init()
 width=35
@@ -15,26 +16,6 @@ red = (255,0,0)
 orange = (223, 109, 20)
 brown = (126, 51, 0)
 
-
-def affichage(map1):
-    n, p = 30,30
-    #print(n, p)
-    S = [[' ' for j in range(p)] for i in range(n)]
-    #print(S)
-    for mur_vert in map1.murs_verticaux():
-        i, j = mur_vert
-        S[i][j] = '|'
-
-    for mur_hor in map1.murs_horizontaux():
-        i, j = mur_hor
-        S[i][j] = '-'
-    
-    for sol in map1.quadrillage_sol():
-        i, j = sol
-        S[i][j] = '.'
-    
-    print(''.join([''.join(S[i]) + '\n' for i in range(len(S))]))
-
 def draw_cases(case:np.array, color):
     x,y=case
     x*=width
@@ -42,15 +23,14 @@ def draw_cases(case:np.array, color):
     rect = pg.Rect(x, y, width, width)
     pg.draw.rect(screen, color, rect)
 
-def pixels(S):
+def affiche(S):
     screen.fill(black)
     for i, ligne in enumerate(S):
         for j, symbol in enumerate(ligne):
-            elif symbol == '.':
+            if symbol == '.':
                 draw_cases([i, j], floor)
             elif symbol == '#':
                 draw_cases([i, j], orange)
             elif symbol =='+':
                 draw_cases([i, j], brown)
-
-pixels()
+    pg.display.update()

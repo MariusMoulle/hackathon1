@@ -2,6 +2,7 @@ from character import Character
 import pygame as pg
 import affichage as aff
 from Map import Map
+import numpy as np
 
 pg.init()
 
@@ -16,7 +17,7 @@ class Game:
     
     def affiche(self):
         S = self.grille
-        print(''.join([''.join(S[i]) + '\n' for i in range(len(S))]))
+        aff.affiche(S)
     
     def combine(self):
         # n, p = self.map.dims
@@ -26,26 +27,25 @@ class Game:
             i, j = sol
             S[i][j] = '.'
 
-        for chemin in self.map.chemins():
-            i, j = chemin
-            S[i][j] = '#'
+        # for chemin in self.map.chemins():
+        #     i, j = chemin
+        #     S[i][j] = '#'
         
-        for porte in self.map.portes():
-            i, j = porte
-            S[i][j] = '+'
+        # for porte in self.map.portes():
+        #     i, j = porte
+        #     S[i][j] = '+'
         
-        i, j = self.character.position
-        S[i][j] = '@'
+        # i, j = self.character.position
+        # S[i][j] = '@'
 
-        for objet in self.map.objets():
-            if objet.position == self.character.position:
-                self.map.remove(objet)
-                self.character.inventaire[objet.type] += objet.valeur
-            i, j = objet.position
-            S[i][j] = objet.repr
+        # for objet in self.map.objets():
+        #     if objet.position == self.character.position:
+        #         self.map.remove(objet)
+        #         self.character.inventaire[objet.type] += objet.valeur
+        #     i, j = objet.position
+        #     S[i][j] = objet.repr
         
         self.grille = S
-        
 
     def play(self):
         running = True
