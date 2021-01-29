@@ -9,11 +9,11 @@ class Map:
         self.longueur = random.randint(4,10)
         self.largeur = random.randint(4,10)
 
-        if self.position[0] + self.longueur > 30 :
+        if self.position[0] + self.longueur >= 30 :
             d = self.position[0] + self.longueur - 30
             self.position[0] = self.position[0] - d
 
-        if self.position[1] + self.largeur > 30 :
+        if self.position[1] + self.largeur >= 30 :
             d = self.position[1] + self.largeur - 30
             self.position[1] = self.position[1] - d
 

@@ -3,9 +3,9 @@
 def affichage(map1):
     
     n, p = 30,30
-    print(n, p)
+    #print(n, p)
     S = [[' ' for j in range(p)] for i in range(n)]
-    print(S)
+    #print(S)
     for mur_vert in map1.murs_horizontaux():
         i, j = mur_vert
         S[i][j] = '|'
