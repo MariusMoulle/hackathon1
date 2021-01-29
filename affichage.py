@@ -6,11 +6,11 @@ def affichage(map1):
     #print(n, p)
     S = [[' ' for j in range(p)] for i in range(n)]
     #print(S)
-    for mur_vert in map1.murs_horizontaux():
+    for mur_vert in map1.murs_verticaux():
         i, j = mur_vert
         S[i][j] = '|'
 
-    for mur_hor in map1.murs_verticaux():
+    for mur_hor in map1.murs_horizontaux():
         i, j = mur_hor
         S[i][j] = '-'
     
