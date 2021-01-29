@@ -18,6 +18,9 @@ class Game:
     def affichage(self):
         aff.affichage(self.map)
     
+    def combine(self):
+        pass
+
     def play(self):
         running = True
         while running:
@@ -37,7 +40,10 @@ class Game:
                         direction=(-1,0)
             
             self.character.movement(direction)
-            
+            schema = self.combine(self.map, self.caracter.position)
+            self.affiche(schema)
+
+
             
 
             

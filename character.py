@@ -8,18 +8,21 @@ Touches = {K_LEFT:37, K_UP:38, K_RIGHT:39, K_DOWN:40}
 
 class Character:
 
-    def __init__(self, name:str, position:np.array):
+    def __init__(self, name:str, position:np.array, game):
         self.name = name
         self.position = position # un array contenant l'indice des lignes et celui des colonnes
         self.inventaire = {armor:5, arms:10, life:10, gold:50, food:5, water:5}
         self.repr = '@'
+        self.game = game
 
     def movement(self, direction:np.array): 
         dx,dy = direction # un tuple qui contient la direction
-        self.position[0] += dx
-        self.position[1] += dy
+        
+        new_pos = (self.position[0] + dx, self.position[1] + dy)
 
-        if self.position in quadrillage_sol:
+        if self.position in self.game.map.quadrillage_sol:
+            self.position[0] += dx
+            self.position[1] += dy
             
             i, j = self.position
             if S[i][j] == 'a':
