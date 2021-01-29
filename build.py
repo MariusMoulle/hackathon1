@@ -13,9 +13,10 @@ class Game:
         #self.main_char = Character(self.char_name)
         self.niveau = 1
         self.map = Map()
+        self.process()
     
     def affichage(self):
-        aff.affichage(map)
+        aff.affichage(self.map)
     
     def process(self):
         self.affichage()

@@ -1,8 +1,11 @@
 
 
 def affichage(map1):
-    n, p = map1.dims
-    S = [['_' for j in range(p)] for i in range(n)]
+    
+    n, p = 30,30
+    print(n, p)
+    S = [[' ' for j in range(p)] for i in range(n)]
+    print(S)
     for mur_vert in map1.murs_horizontaux():
         i, j = mur_vert
         S[i][j] = '|'
@@ -15,4 +18,4 @@ def affichage(map1):
         i, j = sol
         S[i][j] = '.'
     
-    print([S[i].join() + '\n' for i in range(len(S))].join())
+    print(''.join([''.join(S[i]) + '\n' for i in range(len(S))]))
