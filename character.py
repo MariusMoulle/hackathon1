@@ -20,7 +20,7 @@ class Character:
         
         new_pos = [self.position[0] + dx, self.position[1] + dy]
 
-        if new_pos in self.game.map.surface_sol():
+        if new_pos in self.game.map.surface_sol() or new_pos in self.game.map.chemins():
             self.position[0] += dx
             self.position[1] += dy
             
