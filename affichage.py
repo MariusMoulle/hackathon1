@@ -3,9 +3,9 @@ import pygame as pg
 from random import randint
 import numpy as np
 
-pg.init()
-width=35
-n,p=20,20
+
+width=20
+n, p = 30, 30
 screen = pg.display.set_mode((width*p, width*n))
 clock = pg.time.Clock()
 
@@ -23,7 +23,8 @@ def draw_cases(case:np.array, color):
     rect = pg.Rect(x, y, width, width)
     pg.draw.rect(screen, color, rect)
 
-def affiche(S):
+def affichage(S):
+    
     screen.fill(black)
     for i, ligne in enumerate(S):
         for j, symbol in enumerate(ligne):
@@ -33,4 +34,6 @@ def affiche(S):
                 draw_cases([i, j], orange)
             elif symbol =='+':
                 draw_cases([i, j], brown)
+            elif symbol =='@':
+                draw_cases([i, j], red)
     pg.display.update()

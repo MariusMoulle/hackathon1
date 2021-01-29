@@ -12,18 +12,19 @@ class Game:
         self.char_name = input("What is your name, Stranger? ")
         print(f"Welcome {self.char_name}")
         self.map = Map()
-        self.character = Character(self.char_name, self)
+        depart = self.map.surface_sol()[0]
+        self.character = Character(self.char_name, self, depart)
         self.play()
-    
+        
+
     def affiche(self):
         S = self.grille
-        aff.affiche(S)
+        aff.affichage(S)
     
     def combine(self):
-        # n, p = self.map.dims
-        n, p = 30, 30
+        n, p = self.map.dim()
         S = [[' ' for j in range(p)] for i in range(n)]
-        for sol in self.map.quadrillage_sol():
+        for sol in self.map.surface_sol():
             i, j = sol
             S[i][j] = '.'
 
@@ -35,8 +36,8 @@ class Game:
         #     i, j = porte
         #     S[i][j] = '+'
         
-        # i, j = self.character.position
-        # S[i][j] = '@'
+        i, j = self.character.position
+        S[i][j] = '@'
 
         # for objet in self.map.objets():
         #     if objet.position == self.character.position:
