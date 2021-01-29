@@ -4,10 +4,10 @@ import random
 
 class Room:
 
-    def __init__(self):
-        self.position = list(np.random.randint(0, 30, size = 2))
-        self.longueur = random.randint(4,10)
-        self.largeur = random.randint(4,10)
+    def __init__(self, x, y):
+        self.position = [x, y]
+        self.longueur = random.randint(4,8)
+        self.largeur = random.randint(4,8)
 
         if self.position[0] + self.longueur >= 30 :
             d = self.position[0] + self.longueur - 31
@@ -56,13 +56,7 @@ class Room:
 
         return liste_qs
 
-    def portes(self):
-        murs = self.murs_horizontaux() + self.murs_verticaux()
-        a1 = random.choice(murs)
-        a2 = random.choice(murs)
-        while a2 == a1:
-            a2 = random.choice(murs)
-        return a1, a2
+
 
 
 #map1 = Map()
@@ -70,40 +64,53 @@ class Room:
 
 class Map(Room) : 
     def __init__(self):
-        self.room1 = Room()
-        self.room2 = Room()
-
-        while abs(room1.depart()[0] - room2.depart()[0]) <= max(room1.Largeur(), room2.Largeur()) + 3
-             or abs(room1.depart()[1] - room2.depart()[1]) <= max(room1.Longueur(), room2.Longueur()):
-             self.room2 = Room()
+        self.room1 = Room(2, 2)
+        self.room2 = Room(12, 20)
+        self.porte1 = [self.room1.position[0] + self.room1.largeur, self.room1.position[1]+2]
+        self.porte2 = [self.room2.position[0] + 2, self.room2.position[1]]
 
 #"Ahlala qu'est-ce qu'il faut pas faire pour rester éveillés."
 
     def surface_sol(self):
-        sol = room1.quadrillage_sol() + room2.quadrillage_sol()
+        sol = self.room1.quadrillage_sol() + self.room2.quadrillage_sol()
         return sol
     
     def prix_au_metre_carre(self):
         return np.random.randint(10000, 15000)
 
     def prix_total(self):
-        return surface_sol()*prix_au_metre_carre()
+        return self.surface_sol()*self.prix_au_metre_carre()
 
     def dim(self):
         return (30, 30)
 
     def surface_portes(self):
-        return room1.portes()+room2.portes()
+        return self.porte1, self.porte2
 
     def chemins(self):
-        #on prend la porte 0 d'une room comme sortie et la porte 1 comme entrée
-        e1 = room1.portes()[0]
-        s1 = room1.portes()[1]
-        e2 = room2.portes()[0]
-        s2 = room2.portes()[1]
+        chemin = [self.porte1]
 
-        chemin1 = []
-        while e2 not in chemin1 : 
+        while chemin[-1][0] < self.porte2[0]:
+            x, y = chemin[-1][0], chemin[-1][1]
+            chemin.append([x+1, y])
+        
+        while chemin[-1][1] < self.porte2[1]:
+            x, y = chemin[-1][0], chemin[-1][1]
+            chemin.append([x, y+1])
+
+        return chemin
+
+    
+    
+
+
+
+        
+            
+map1 = Map()
+print(map1.chemins(), map1.surface_portes())
+
+
 
 
 
