@@ -28,13 +28,13 @@ class Game:
             i, j = sol
             S[i][j] = '.'
 
-        # for chemin in self.map.chemins():
-        #     i, j = chemin
-        #     S[i][j] = '#'
+        for chemin in self.map.chemins():
+            i, j = chemin
+            S[i][j] = '#'
         
-        # for porte in self.map.portes():
-        #     i, j = porte
-        #     S[i][j] = '+'
+        for porte in self.map.surface_portes():
+            i, j = porte
+            S[i][j] = '+'
         
         i, j = self.character.position
         S[i][j] = '@'
