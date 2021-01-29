@@ -12,9 +12,7 @@ class Character:
         self.name = name
         self.position = position # un array contenant l'indice des lignes et celui des colonnes
         self.inventaire = {armor:5, arms:10, life:10, gold:50, food:5, water:5}
-    
-    def __repr__(self):
-        return '@'
+        self.repr = '@'
 
     def movement(self, direction:np.array): 
         dx,dy = direction # un tuple qui contient la direction
@@ -41,21 +39,5 @@ class Character:
                     self.inventaire(life) -= 5
                 else : 
                     self.inventaire(life) += 5  
-        
-            return self.position
             
-
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            running = False
-        elif event.type == pg.KEYDOWN:
-            if event.key == pg.K_q:
-                running = False
-            elif event.key == pg.K_UP :
-                direction=(0,-1)
-            elif event.key == pg.K_DOWN :
-                direction=(0,1)
-            elif event.key == pg.K_RIGHT :
-                direction=(1,0)
-            elif event.key == pg.K_LEFT :
-                direction=(-1,0)
+            S[i][j] = '@'
